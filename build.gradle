@@ -1,0 +1,17 @@
+buildscript {
+    ext{
+        springBootVersion = '3.4.4'
+        lombokVersion = '1.18.38'
+        pitestVersion = '1.15.0'
+        logbackVersion = '1.5.16'
+        logstashLogbackVersion ='8.0'
+        mapstructVersion = '1.5.1.Final'
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}" apply false
+    id 'info.solidsoft.pitest' version  "${pitestVersion}" apply false
+}
+
+apply from: './main.gradle'
