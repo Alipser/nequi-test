@@ -5,27 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37ab24d7-ba79-46a2-828e-5e56ddf0a9ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/applications/app-service/src/main/java/co/com/nequi/config/ObjectMapperConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/domain/model/src/main/java/co/com/nequi/models/enums/RegisterState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/src/main/java/co/com/nequi/dynamo/config/DynamoConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/src/main/java/co/com/nequi/dynamo/entity/RegisterDynamo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/src/main/java/co/com/nequi/dynamo/repository/RegisterRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/model/src/main/java/co/com/nequi/models/branch/gateways/BranchGateways.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/model/src/main/java/co/com/nequi/models/franchise/gateways/FranchiseGateways.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/usecase/src/main/java/co/com/nequi/usecase/BranchUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/usecase/src/main/java/co/com/nequi/usecase/FranchiseUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/src/main/java/co/com/nequi/dynamo/adapters/branch/BranchAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/src/main/java/co/com/nequi/dynamo/adapters/branch/mapper/BranchMapperAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/src/main/java/co/com/nequi/dynamo/adapters/franchise/FranchiseAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/src/main/java/co/com/nequi/dynamo/adapters/franchise/mapper/FranchiseToDynamoMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/applications/app-service/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/applications/app-service/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/applications/app-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/applications/app-service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/model/src/main/java/co/com/nequi/models/branch/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/domain/model/src/main/java/co/com/nequi/models/branch/Branch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/model/src/main/java/co/com/nequi/models/enums/EntityType.java" beforeDir="false" afterPath="$PROJECT_DIR$/domain/model/src/main/java/co/com/nequi/models/enums/EntityType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/RouterRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/RouterRest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/handlers/BranchHAndler.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/handlers/BranchHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/usecase/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/domain/usecase/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/src/main/java/co/com/nequi/dynamo/repository/RegisterRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/driven-adapter/dynamo-adapter/src/main/java/co/com/nequi/dynamo/repository/RegisterRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/handlers/BranchHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/handlers/BranchHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/handlers/FranchiseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/handlers/FranchiseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/handlers/ProductHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/handlers/ProductHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/mappers/BranchMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/mappers/BranchMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/mappers/FranchiseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/mappers/FranchiseMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/mappers/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/entry-points/reactive-web/src/main/java/co/com/nequi/api/mappers/ProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +54,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -78,25 +72,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.nequitest [dependencies].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.nequitest:applications [:applications:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.nequitest:applications:app-service [:app-service:Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Romar/Documents/JAVA-Inicio/NEQUI/nequitest&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Romar/Documents/JAVA-Inicio/NEQUI/nequitest/applications/app-service/nequi/src/main/java/org/nequi/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;build.tools&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.nequitest [dependencies].executor": "Run",
+    "Gradle.nequitest:applications [:applications:Main.main()].executor": "Run",
+    "Gradle.nequitest:applications:app-service [:app-service:Main.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Feature/DyanmoAdapterCreation",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "18",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Romar/Documents/JAVA-Inicio/NEQUI/nequitest",
+    "onboarding.tips.debug.path": "C:/Users/Romar/Documents/JAVA-Inicio/NEQUI/nequitest/applications/app-service/nequi/src/main/java/org/nequi/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "build.tools"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Romar\Documents\JAVA-Inicio\NEQUI\nequitest\applications\app-service" />
@@ -114,7 +108,7 @@
       <recent name="co.com.nequi.api.mappers" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.nequitest [dependencies]">
+  <component name="RunManager" selected="Application.co.com.nequi.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.nequi.Main" />
       <module name="nequitest.applications.main" />

@@ -2,6 +2,7 @@ package co.com.nequi.api.handlers;
 
 import co.com.nequi.api.dtos.FranchiseRequest;
 import co.com.nequi.api.mappers.FranchiseMapper;
+import co.com.nequi.usecase.FranchiseUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -12,10 +13,12 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 @Slf4j
 public class FranchiseHandler {
+
+    private final FranchiseUseCase franchiseUsecase;
     public Mono<ServerResponse> createFranchise(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(FranchiseRequest.class)
                 .flatMap(request -> Mono.just(FranchiseMapper.MAPPER.toDomain(request)))
-
+                .flatMap(franchiseUsecase::save)
                 .then(ServerResponse.created(serverRequest.uri()).build())
                 .onErrorResume(error -> {
                     log.error("Error al crear franquicia", error);
