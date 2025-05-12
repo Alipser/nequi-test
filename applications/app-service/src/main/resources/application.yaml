@@ -19,3 +19,7 @@ management:
     endpoint:
       health:
         show-details: always
+aws:
+  dynamo:
+    table-name: "nequi-test-registries"
+    endpoint:  "http://localhost:4566"
