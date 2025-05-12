@@ -1,24 +1,27 @@
 package co.com.nequi.api.handlers;
 
+import co.com.nequi.api.dtos.BranchRequest;
 import co.com.nequi.api.dtos.FranchiseRequest;
+import co.com.nequi.api.mappers.BranchMapper;
 import co.com.nequi.api.mappers.FranchiseMapper;
-import co.com.nequi.usecase.FranchiseUseCase;
+import co.com.nequi.usecase.BranchUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class FranchiseHandler {
+public class BranchHandler {
 
-    private final FranchiseUseCase franchiseUsecase;
-    public Mono<ServerResponse> createFranchise(ServerRequest serverRequest) {
-        return serverRequest.bodyToMono(FranchiseRequest.class)
-                .flatMap(request -> Mono.just(FranchiseMapper.MAPPER.toDomain(request)))
-                .flatMap(franchiseUsecase::save)
+    private final BranchUseCase branchUseCase;
+    public Mono<ServerResponse> createBranch(ServerRequest serverRequest) {
+        return serverRequest.bodyToMono(BranchRequest.class)
+                .flatMap(request -> Mono.just(BranchMapper.MAPPER.toDomain(request)))
+                .flatMap(branchUseCase::save)
                 .then(ServerResponse.created(serverRequest.uri()).build())
                 .onErrorResume(error -> {
                     log.error("Error al crear franquicia", error);
@@ -26,8 +29,7 @@ public class FranchiseHandler {
                 });
     }
 
-
-    public Mono<ServerResponse> updateFranchiseName(ServerRequest serverRequest) {
-        return null;
+    public Mono<ServerResponse> updateBranchName(ServerRequest serverRequest) {
+            return null;
     }
 }
