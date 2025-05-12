@@ -154,8 +154,8 @@ Esto permite **soft deletes**, evitando borrar físicamente los registros.
 | Método | Endpoint                                                                 | Descripción                                         |
 |--------|--------------------------------------------------------------------------|-----------------------------------------------------|
 | POST   | `/api/franquicias`                                                       | Crear franquicia                                    |
-| POST   | `/api/franquicias/{id}/sucursales`                                       | Crear sucursal                                      |
-| POST   | `/api/franquicias/{id}/sucursales/{id}/productos`                        | Crear producto                                      |
+| POST   | `/api/franquicias/sucursal`                                       | Crear sucursal                                      |
+| POST   | `/api/franquicias/sucursal/producto`                        | Crear producto                                      |
 | PUT    | `/api/franquicias/{id}/sucursales/{id}/productos/{id}`                   | Actualizar nombre o stock de un producto            |
 | PUT    | `/api/franquicias/{id}/sucursales/{id}/productos/{id}/stock`             | (versión anterior) actualizar solo el stock         |
 | DELETE | `/api/franquicias/{id}/sucursales/{id}/productos/{id}`                   | Desactivar producto (soft delete)                   |
@@ -178,6 +178,39 @@ Esto permite **soft deletes**, evitando borrar físicamente los registros.
 ```
 
 ---
+
+### Dockerizacion
+
+desde la raíz del proyecto:
+
+```bash
+docker build -f applications/app-service/Dockerfile -t nequi-app .
+```
+
+---
+
+```bash
+cd LocalStack
+docker-compose up -d
+```
+
+Esto iniciará LocalStack en `http://localhost:4566`, con DynamoDB simulado localmente.
+
+---
+
+volver  a la raiz del proyecto para luego lanzar
+
+```bash
+docker run --rm -p 8080:8080 \
+  -e AWS_ACCESS_KEY_ID=test \
+  -e AWS_SECRET_ACCESS_KEY=test \
+  -e AWS_REGION=us-east-1 \
+  -e AWS_DYNAMO_ENDPOINT=http://host.docker.internal:4566 \
+  nequi-app
+```
+
+---
+
 
 ## 🧪 Pruebas
 
