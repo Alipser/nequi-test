@@ -5,4 +5,8 @@ import reactor.core.publisher.Mono;
 
 public interface ProductGateways {
     Mono<Product> save(Product product);
+
+    Mono<Product>findById(String franchiseId, String productId);
+
+    Mono<Product>update(Product product);
 }

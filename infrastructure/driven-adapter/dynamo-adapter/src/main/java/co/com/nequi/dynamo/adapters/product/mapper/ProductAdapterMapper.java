@@ -18,9 +18,9 @@ public interface ProductAdapterMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "stock", source = "stock")
     @Mapping(target = "sucursalId", source = "branchId")
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "state", ignore = true)
+    @Mapping(target = "createdAt", source = "createdAt")
+    @Mapping(target = "updatedAt",source = "updatedAt")
+    @Mapping(target = "state", source = "state")
     RegisterDynamo toRegisterDynamo(Product product);
 
     @Mapping(target = "id", source = "uniqueId")

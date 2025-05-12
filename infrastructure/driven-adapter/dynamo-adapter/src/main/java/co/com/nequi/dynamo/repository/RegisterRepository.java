@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbAsyncTable;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient;
+import software.amazon.awssdk.enhanced.dynamodb.Key;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 
 @Repository
@@ -37,5 +38,12 @@ public class RegisterRepository {
                 .thenReturn(entity);
     }
 
-
+    public Mono<RegisterDynamo> findByKey(String partitionKey, String sortKey) {
+        return Mono.fromFuture(() -> getTable().getItem(r ->
+                r.key(Key.builder()
+                        .partitionValue(partitionKey)
+                        .sortValue(sortKey)
+                        .build())
+        ));
+    }
 }
