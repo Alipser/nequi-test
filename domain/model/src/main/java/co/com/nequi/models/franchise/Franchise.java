@@ -9,4 +9,8 @@ public class Franchise {
     String id;
     String name;
     String entityType;
+
+    String state;
+    String createdAt;
+    String updatedAt;
 }

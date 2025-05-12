@@ -9,4 +9,8 @@ public class Branch {
     String name;
     String franchiseId;
     String entityType;
+
+    String state;
+    String createdAt;
+    String updatedAt;
 }

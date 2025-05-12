@@ -11,5 +11,9 @@ public class Product {
     int stock;
     String branchId;
     String franchiseId;
+
     String entityType;
+    String state;
+    String createdAt;
+    String updatedAt;
 }
