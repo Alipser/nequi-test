@@ -9,5 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class BranchRequest {
+    private String id;
     private String name;
+    private String franchiseId;
 }
