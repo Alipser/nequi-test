@@ -219,6 +219,6 @@ No pudieron ser adleantadas pero se implento Junit5 en el proyecto por cuestion 
 
 ## 👨‍💻 Autor
 
-Romario Julio — Backend Developer | Arquitectura Clean + Reactiva + Serverless
+Romario Julio — Backend Developer | Arquitectura Clean + Reactiva 
 
 ---
