@@ -10,5 +10,6 @@ public class Product {
     String name;
     int stock;
     String branchId;
+    String franchiseId;
     String entityType;
 }
