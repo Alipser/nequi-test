@@ -26,9 +26,6 @@ public class FranchiseHandler {
                 });
     }
 
-    public Mono<ServerResponse> getTopProductsByStock(ServerRequest serverRequest) {
-        return null;
-    }
 
     public Mono<ServerResponse> updateFranchiseName(ServerRequest serverRequest) {
         return null;

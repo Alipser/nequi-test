@@ -9,6 +9,7 @@ import co.com.nequi.models.product.gateways.ProductGateways;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
@@ -37,13 +38,28 @@ public class ProductAdapter implements ProductGateways {
         String partitionKey = "franquicia#" + franchiseId;
         String sortKey = "PRODUCT#" + productId;
         return registerRepository.findByKey(partitionKey, sortKey)
-                .flatMap(dbResult -> Mono.just(ProductAdapterMapper.MAPPER.toDomain(dbResult)));
+                .map(ProductAdapterMapper.MAPPER::toDomain);
     }
     @Override
     public Mono<Product> update(Product product) {
         RegisterDynamo entity = ProductAdapterMapper.MAPPER.toRegisterDynamo(product);
         return registerRepository.save(entity)
                 .thenReturn(product);
+    }
+
+    @Override
+    public Flux<Product> findTopStockProductsByFranchise(String franchiseId) {
+        String pk = "franquicia#" + franchiseId;
+
+        return registerRepository.queryByIndexDescending(
+                        "ix-franchise-stock",
+                        "franchise",
+                        pk
+                )
+                .filter(r -> "PRODUCT".equals(r.getEntityType()))
+                .groupBy(RegisterDynamo::getSucursalId)
+                .flatMap(Flux::next)
+                .map(ProductAdapterMapper.MAPPER::toDomain);
     }
 
 

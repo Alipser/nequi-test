@@ -28,9 +28,6 @@ public class BranchHandler {
                     return ServerResponse.status(500).bodyValue("Error interno al crear la franquicia");
                 });
     }
-    public Mono<ServerResponse> updateStock(ServerRequest serverRequest) {
-            return null;
-    }
 
     public Mono<ServerResponse> updateBranchName(ServerRequest serverRequest) {
             return null;

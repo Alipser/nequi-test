@@ -6,11 +6,10 @@ import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import software.amazon.awssdk.enhanced.dynamodb.DynamoDbAsyncTable;
-import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedAsyncClient;
-import software.amazon.awssdk.enhanced.dynamodb.Key;
-import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
+import software.amazon.awssdk.enhanced.dynamodb.*;
+import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
 
 @Repository
 @Slf4j
@@ -45,5 +44,18 @@ public class RegisterRepository {
                         .sortValue(sortKey)
                         .build())
         ));
+    }
+
+    public Flux<RegisterDynamo> queryByIndexDescending(String indexName, String keyAttr, String keyValue) {
+        DynamoDbAsyncIndex<RegisterDynamo> index = getTable().index(indexName);
+
+        QueryConditional conditional = QueryConditional
+                .keyEqualTo(Key.builder().partitionValue(keyValue).build());
+
+        return Flux.from(index.query(result -> result
+                        .queryConditional(conditional)
+                        .scanIndexForward(false))
+                )
+                .flatMap(product -> Flux.fromIterable(product.items()));
     }
 }
