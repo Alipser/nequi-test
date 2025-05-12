@@ -60,16 +60,61 @@ Esto permite:
 - Escalabilidad horizontal con una sola tabla
 
 ---
+# 🧪 LocalStack + Terraform para DynamoDB
+
+Este entorno levanta una tabla DynamoDB local llamada `nequi-test-registries` usando [LocalStack](https://github.com/localstack/localstack) y [Terraform](https://www.terraform.io/). Es ideal para entornos de desarrollo o pruebas offline sin necesidad de acceder a AWS real.
+
+---
+
+## ✅ Cómo levantar La base de datos
+
+### 1. Levantar LocalStack con Docker Compose
+
+```bash
+cd LocalStack
+docker-compose up -d
+```
+
+Esto iniciará LocalStack en `http://localhost:4566`, con DynamoDB simulado localmente.
+
+---
+
+### 2. Aplicar Terraform
+
+```bash
+cd terraform
+terraform init
+terraform plan
+terraform apply
+```
+
+Confirma con `yes` cuando se solicite.
+
+---
+
+## 🗂️ Resultado
+
+Se crea una tabla llamada `nequi-test-registries` con:
+
+- 📌 **Partition key (PK)**: `franchise`
+- 📌 **Sort key (SK)**: `compositeKey`
+- ⭐ **GSI `ix-franchise-stock`**:
+    - PK: `franchise`
+    - SK: `stock`
+
+Esto permite buscar todos los productos de una franquicia ordenados por stock.
+
+
 
 ### ✅ Índices Secundarios Globales (GSI)
 
 Se definieron GSIs para casos de uso específicos:
 
-| Índice                        | Uso principal                                      |
-|------------------------------|----------------------------------------------------|
-| `ix-franchise-stock`         | Obtener productos ordenados por stock dentro de una franquicia |
-| `ix-sucursal-entityType`     | Obtener todas las entidades por sucursal y tipo    |
-| `ix-uniqueId-entityType`     | Búsqueda puntual por ID y tipo                     |
+| Índice                        | Uso principal                                                                                          |
+|------------------------------|--------------------------------------------------------------------------------------------------------|
+| `ix-franchise-stock`         | Obtener productos ordenados por stock dentro de una franquicia                                         |
+| `ix-sucursal-entityType`     | Obtener todas las entidades por sucursal y tipo  (No incluida porque no se desrrollo la funcionalidad) |
+| `ix-uniqueId-entityType`     | Búsqueda puntual por ID y tipo  (No incluida porque no se desrrollo la funcionalidad)                  |
 
 ---
 
