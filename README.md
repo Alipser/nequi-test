@@ -60,16 +60,61 @@ Esto permite:
 - Escalabilidad horizontal con una sola tabla
 
 ---
+# 🧪 LocalStack + Terraform para DynamoDB
+
+Este entorno levanta una tabla DynamoDB local llamada `nequi-test-registries` usando [LocalStack](https://github.com/localstack/localstack) y [Terraform](https://www.terraform.io/). Es ideal para entornos de desarrollo o pruebas offline sin necesidad de acceder a AWS real.
+
+---
+
+## ✅ Cómo levantar La base de datos
+
+### 1. Levantar LocalStack con Docker Compose
+
+```bash
+cd LocalStack
+docker-compose up -d
+```
+
+Esto iniciará LocalStack en `http://localhost:4566`, con DynamoDB simulado localmente.
+
+---
+
+### 2. Aplicar Terraform
+
+```bash
+cd terraform
+terraform init
+terraform plan
+terraform apply
+```
+
+Confirma con `yes` cuando se solicite.
+
+---
+
+## 🗂️ Resultado
+
+Se crea una tabla llamada `nequi-test-registries` con:
+
+- 📌 **Partition key (PK)**: `franchise`
+- 📌 **Sort key (SK)**: `compositeKey`
+- ⭐ **GSI `ix-franchise-stock`**:
+    - PK: `franchise`
+    - SK: `stock`
+
+Esto permite buscar todos los productos de una franquicia ordenados por stock.
+
+
 
 ### ✅ Índices Secundarios Globales (GSI)
 
 Se definieron GSIs para casos de uso específicos:
 
-| Índice                        | Uso principal                                      |
-|------------------------------|----------------------------------------------------|
-| `ix-franchise-stock`         | Obtener productos ordenados por stock dentro de una franquicia |
-| `ix-sucursal-entityType`     | Obtener todas las entidades por sucursal y tipo    |
-| `ix-uniqueId-entityType`     | Búsqueda puntual por ID y tipo                     |
+| Índice                        | Uso principal                                                                                          |
+|------------------------------|--------------------------------------------------------------------------------------------------------|
+| `ix-franchise-stock`         | Obtener productos ordenados por stock dentro de una franquicia                                         |
+| `ix-sucursal-entityType`     | Obtener todas las entidades por sucursal y tipo  (No incluida porque no se desrrollo la funcionalidad) |
+| `ix-uniqueId-entityType`     | Búsqueda puntual por ID y tipo  (No incluida porque no se desrrollo la funcionalidad)                  |
 
 ---
 
@@ -109,8 +154,8 @@ Esto permite **soft deletes**, evitando borrar físicamente los registros.
 | Método | Endpoint                                                                 | Descripción                                         |
 |--------|--------------------------------------------------------------------------|-----------------------------------------------------|
 | POST   | `/api/franquicias`                                                       | Crear franquicia                                    |
-| POST   | `/api/franquicias/{id}/sucursales`                                       | Crear sucursal                                      |
-| POST   | `/api/franquicias/{id}/sucursales/{id}/productos`                        | Crear producto                                      |
+| POST   | `/api/franquicias/sucursal`                                       | Crear sucursal                                      |
+| POST   | `/api/franquicias/sucursal/producto`                        | Crear producto                                      |
 | PUT    | `/api/franquicias/{id}/sucursales/{id}/productos/{id}`                   | Actualizar nombre o stock de un producto            |
 | PUT    | `/api/franquicias/{id}/sucursales/{id}/productos/{id}/stock`             | (versión anterior) actualizar solo el stock         |
 | DELETE | `/api/franquicias/{id}/sucursales/{id}/productos/{id}`                   | Desactivar producto (soft delete)                   |
@@ -134,6 +179,39 @@ Esto permite **soft deletes**, evitando borrar físicamente los registros.
 
 ---
 
+### Dockerizacion
+
+desde la raíz del proyecto:
+
+```bash
+docker build -f applications/app-service/Dockerfile -t nequi-app .
+```
+
+---
+
+```bash
+cd LocalStack
+docker-compose up -d
+```
+
+Esto iniciará LocalStack en `http://localhost:4566`, con DynamoDB simulado localmente.
+
+---
+
+volver  a la raiz del proyecto para luego lanzar
+
+```bash
+docker run --rm -p 8080:8080 \
+  -e AWS_ACCESS_KEY_ID=test \
+  -e AWS_SECRET_ACCESS_KEY=test \
+  -e AWS_REGION=us-east-1 \
+  -e AWS_DYNAMO_ENDPOINT=http://host.docker.internal:4566 \
+  nequi-app
+```
+
+---
+
+
 ## 🧪 Pruebas
 
 No pudieron ser adleantadas pero se implento Junit5 en el proyecto por cuestion de tiempo no se genraron los test
@@ -141,6 +219,6 @@ No pudieron ser adleantadas pero se implento Junit5 en el proyecto por cuestion 
 
 ## 👨‍💻 Autor
 
-Romario Julio — Backend Developer | Arquitectura Clean + Reactiva + Serverless
+Romario Julio — Backend Developer | Arquitectura Clean + Reactiva 
 
 ---
